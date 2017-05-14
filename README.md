@@ -9,3 +9,4 @@ I realized, that python is the better language to use Machine Learning and furth
 Tough, in my opinion C++ is better for image manipulation.
 All the more it is my choice to with on my RPi.
  
+added a testline
