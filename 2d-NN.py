@@ -1,14 +1,25 @@
+'''
+19.05.2017
+live workshop with saraj raval
+my first training/pediction of XOR
+
+2 layer neural network
+
+
+'''
+
+
 import numpy as np
 import time
 
 #variables
-n_hidden = 10
-n_in = 10
+n_hidden = 10 #hidden neurons
+n_in = n_out = 10
 #outputs
-n_out = 10
+#n_out = 20
 #sample data
-n_samples = 300
-n_iterations = 100
+n_samples = 500
+n_iterations = 10
 
 
 #hyperparameters
