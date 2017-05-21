@@ -17,3 +17,4 @@ print (result)
 
 sess = tf.Session()
 print(sess.run(result))
+sess.close
