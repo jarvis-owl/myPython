@@ -20,14 +20,14 @@ import tensorflow as tf
 weights = tf.Variable(tf.random_normal([784,200],stddev=0.035), name="weights")
 biases = tf.Variable(tf.zeros([200]),name ="biases")
 w2 = tf.Variable(weights.initialized_value() * 2, name="w2")
-save_path = "/home/scout/github/image_processingPP/model_container/model.ckpt"
+save_path = "/home/scout/github/myPython/model_container/model.ckpt"
 
 #add an op to initialize variables
 init_op = tf.global_variables_initializer()
 
 #add ops to save and restore specified variables
-saver = tf.train.Saver({"my_w2": w2})
-    #'max_to_keep' and 'keep_checkpoint_every_n_hours' possible
+saver = tf.train.Saver({"my_w2":w2})#or use a vector of variables [w2,weights,biases]
+    #'max_to_keep', 'keep_checkpoint_every_n_hours' and 'latest_checkpoint()' possible
 
 #later, when launching model
 with tf.Session() as sess:
