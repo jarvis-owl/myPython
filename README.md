@@ -31,3 +31,13 @@ tried first machine learning tutorial. predicting XOR output in live workshop wi
 
 
 [super fun playing with Neural Network](http://playground.tensorflow.org/#activation=tanh&regularization=L2&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.001&regularizationRate=0.003&noise=0&networkShape=4,2&seed=0.79664&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false)
+
+---
+
+##further neutal network sources
+
+http://karpathy.github.io/neuralnets/
+
+http://pages.cs.wisc.edu/~bolo/shipyard/neural/local.html
+
+https://www.quora.com/What-is-an-intuitive-explanation-for-neural-networks
