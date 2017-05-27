@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/scout/github/myPython/model_container/model.ckpt"
+all_model_checkpoint_paths: "/home/scout/github/myPython/model_container/model.ckpt"
