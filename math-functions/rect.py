@@ -4,7 +4,16 @@
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
+
 t = np.linspace(0, 1, 500, endpoint=False)
-plt.plot(t, signal.square(2 * np.pi * 5 * t))
-plt.ylim(-2, 2)
+
+
+#plt.ylim(-2, 2)
+plt.ion()
 plt.show()
+
+for k in range(0,10):
+    plt.plot(t, signal.square(k+1 * np.pi * 5 * t))
+    plt.draw()
+    plt.pause(1e-3)
+    input("Press [enter] to continue.")

@@ -5,8 +5,9 @@
 #
 # source: https://github.com/Hvass-Labs/TensorFlow-Tutorials
 
-%matplotlib inline
+#%matplotlib inline #for jupyter
 import matplotlib.pyplot as plt
+import time
 import tensorflow as tf
 import numpy as np
 from sklearn.metrics import confusion_matrix
@@ -19,6 +20,7 @@ print("Size of:")
 print("- Training-set:\t\t{}".format(len(data.train.labels)))
 print("- Test-set:\t\t{}".format(len(data.test.labels)))
 print("- Validation-set:\t{}".format(len(data.validation.labels)))
+t1 = time.time()
 
 data.test.labels[0:5,:]
 #convert one_hot to single number class
@@ -59,6 +61,7 @@ def plot_images(images, cls_true, cls_pred=None):
         # Remove ticks from the plot.
         ax.set_xticks([])
         ax.set_yticks([])
+    plt.show()
 
 #Get the first images from the Test-set
 images = data.test.images[0:9]
@@ -67,7 +70,7 @@ images = data.test.images[0:9]
 cls_true = data.test.cls[0:9]
 
 #Plot the images and labels using our helper function above
-plot_images(images=images, cls_true=cls_true)
+#plot_images(images=images, cls_true=cls_true)
 
 # ====================== placeholder variables =========================
 
@@ -100,22 +103,25 @@ cost = tf.reduce_mean(cross_entropy)
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.5).minimize(cost)
 
 correct_prediction = tf.equal(y_pred_cls,y_true_cls)
-accuracy = tf.reduce_mean(tf.cast(correct_prediction.tf.float32))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
 
 
 # ====================== run computational graph =========================
 
 session =tf.Session()
-session.run(tf.global_variables_initalizer())
+session.run(tf.global_variables_initializer())
 
 batch_size = 100
 
+
 def optimize(num_iterations):
-    for i in range(num_iterations)
-    x_batch, y_true_batch = data.train.next_batch(batch_size)
-    feed_dict_train = {x:x_batch,
+    #print()
+    for i in range(num_iterations):
+        x_batch, y_true_batch = data.train.next_batch(batch_size)
+        feed_dict_train = {x:x_batch,
                        y_true: y_true_batch}
-    session.run(optimizer,feed_dict_train)
+        session.run(optimizer,feed_dict_train)
+
 
 feed_dict_test = {x: data.test.images,
                   y_true: data.test.labels,
@@ -176,8 +182,44 @@ def plot_example_errors():
                 cls_true=cls_true[0:9],
                 cls_pred=cls_pred[0:9])
 
-# ====================== compute =========================
+def plot_weights():
+    # Get the values for the weights from the TensorFlow variable.
+    w = session.run(weights)
 
-optimize(num_iterations=1)
+    # Get the lowest and highest values for the weights.
+    # This is used to correct the colour intensity across
+    # the images so they can be compared with each other.
+    w_min = np.min(w)
+    w_max = np.max(w)
+
+    # Create figure with 3x4 sub-plots,
+    # where the last 2 sub-plots are unused.
+    fig, axes = plt.subplots(3, 4)
+    fig.subplots_adjust(hspace=0.3, wspace=0.3)
+
+    for i, ax in enumerate(axes.flat):
+        # Only use the weights for the first 10 sub-plots.
+        if i<10:
+            # Get the weights for the i'th digit and reshape it.
+            # Note that w.shape == (img_size_flat, 10)
+            image = w[:, i].reshape(img_shape)
+
+            # Set the label for the sub-plot.
+            ax.set_xlabel("Weights: {0}".format(i))
+
+            # Plot the image.
+            ax.imshow(image, vmin=w_min, vmax=w_max, cmap='seismic')
+
+        # Remove ticks from each sub-plot.
+        ax.set_xticks([])
+        ax.set_yticks([])
+    plt.show()
+
+# ====================== compute =========================
+num_iterations = 5000
+print("iterations: ",num_iterations)
+optimize(num_iterations)
 print_accuracy()
-plot_example_errors()
+#plot_example_errors()
+plot_weights()
+print("duration: ",time.time()-t1)

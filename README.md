@@ -1,3 +1,12 @@
+***22.07.'17***
+
+wrote down [Simple Linear Model by Hvass-Labs](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
+
+weights result of 100k Iterations:
+![100k iterations](/md_pictures/100k_iterations.png)
+Accuracy only around 93% 
+
+
 ***25.05.'17***
 
 added sources
