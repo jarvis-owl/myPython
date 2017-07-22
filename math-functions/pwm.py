@@ -1,3 +1,6 @@
+#as well as rect.py from:
+#https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.signal.square.html
+
 from scipy import signal
 import numpy as np
 import matplotlib.pyplot as plt
