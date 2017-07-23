@@ -100,7 +100,8 @@ cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits,labels=y_t
 #average alö entropies - single scalar value
 cost = tf.reduce_mean(cross_entropy)
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.5).minimize(cost)
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate=1e-3).minimize(cost)
+optimizer = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(cost)
 
 correct_prediction = tf.equal(y_pred_cls,y_true_cls)
 accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
@@ -111,7 +112,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
 session =tf.Session()
 session.run(tf.global_variables_initializer())
 
-batch_size = 100
+batch_size = 1000
 
 
 def optimize(num_iterations):
@@ -216,10 +217,13 @@ def plot_weights():
     plt.show()
 
 # ====================== compute =========================
-num_iterations = 5000
+num_iterations = 1000
 print("iterations: ",num_iterations)
 optimize(num_iterations)
 print_accuracy()
 #plot_example_errors()
-plot_weights()
 print("duration: ",time.time()-t1)
+plot_weights()
+
+
+session.close()
