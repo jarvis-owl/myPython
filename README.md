@@ -1,3 +1,6 @@
+***03.09.'17***
+found a [fine guide](https://niektemme.com/2016/02/21/tensorflow-handwriting/) to use a trained model (MNIST) on own handwriting!
+
 ***22.07.'17***
 
 wrote down [Simple Linear Model by Hvass-Labs](https://github.com/Hvass-Labs/TensorFlow-Tutorials)
